@@ -1,0 +1,40 @@
+Test from GT to Mac
+Test from Mac to GT
+
+Code & Walkthrough
+    Address Book Example #1
+    https://codereview.stackexchange.com/questions/160242/simple-address-book-python/173799
+
+    Address Book Example #2
+    https://codereview.stackexchange.com/questions/206801/little-address-book-coded-in-python-3
+
+    Address Book Example #3
+    http://pythonfiddle.com/address-book/
+
+    Multi-Layer GUI
+    https://pythonprogramming.net/change-show-new-frame-tkinter/
+
+    Project Idea
+    https://realpython.com/intermediate-python-project-ideas/#contact-book
+
+    SQL Database Connection
+    https://pynative.com/python-mysql-database-connection/
+
+    Custom Title Bar
+    https://stackoverflow.com/questions/49621671/trouble-making-a-custom-title-bar-in-tkinter?rq=1
+
+Videos
+    Python, Git, PyCharm, GitHub
+    https://www.youtube.com/watch?v=UBLONzkmReE
+
+    Python Version Control with Git and Github
+    https://www.youtube.com/watch?v=yYknmU_gBgs
+
+    How to Convert Python File to Exe
+    https://www.youtube.com/watch?v=UZX5kH72Yx4
+
+    GUIs with Python and Tkinter
+    https://www.youtube.com/watch?v=yQSEXcf6s2I
+
+    GUIs with Python and Tkinter
+    https://www.youtube.com/watch?v=D8-snVfekto
