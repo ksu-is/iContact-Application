@@ -1,0 +1,39 @@
+{% extends "admin/controller/change_form.html" %}
+{% load utils admin_urls %}
+
+{% block object-tools-items %}
+{% for item in object_tools_items %}
+    {% if item.always_display or has_change_permission %}
+    {% if 'pings'|isinstalled %}
+        {% if obj_opts.app_label == 'nodes' %}
+            <li><a href="{% url 'admin:pings_ping_ping' original.content_object.mgmt_net|content_type original.content_object.mgmt_net.pk %}">Pings</a></li>
+        {% elif obj_opts.app_label == 'slices' and original.content_object.mgmt_iface %}
+            <li><a href="{% url 'admin:pings_ping_ping' original.content_object.mgmt_iface|content_type original.content_object.mgmt_iface.pk %}">Pings</a></li>
+        {% endif %}
+    {% endif %}
+    <li><a href="{{item.url_name}}/" class="{{item.css_class}}" title="{{item.description}}">{{item.verbose_name}}</a></li>
+    {% endif %}
+{% endfor %}
+
+<li>
+    <a href="{% url 'admin:state_history' original.pk %}" class="historylink">History</a>
+</li>
+{% endblock %}
+
+{% block content_title %}{% if title %}<h1>State of {{ obj_opts.object_name.lower }} 
+    <a href="{% url obj_opts|admin_urlname:'change' obj.pk %}">{{ obj|truncatewords:"18" }}</a>
+    (<a href="http://[{{ ip_addr }}]">{{ ip_addr }}</a>)</h1>
+{% endif %}{% endblock %}
+
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+    <a href="{% url 'admin:index' %}">Home</a>
+    &rsaquo; <a href="{% url 'admin:app_list' app_label=obj_opts.app_label %}">{{ obj_opts.app_label|capfirst|escape }}</a>
+    &rsaquo; <a href="{% url obj_opts|admin_urlname:'changelist' %}">{{ obj_opts.verbose_name_plural|capfirst }}</a>
+    &rsaquo; <a href="{% url obj_opts|admin_urlname:'change' obj.pk %}">{{ obj|truncatewords:"18" }}</a>
+    &rsaquo; State
+    </div>
+{% endblock %}
+
+{% block submit_buttons_bottom %}{% endblock %}
+

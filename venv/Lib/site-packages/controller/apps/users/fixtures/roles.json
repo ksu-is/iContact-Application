@@ -1,0 +1,13 @@
+[
+{
+    "pk": 8,
+    "model": "users.roles",
+    "fields": {
+        "user": 2,
+        "group": 1,
+        "is_group_admin": true,
+        "is_node_admin": false,
+        "is_slice_admin": false
+    }
+}
+]

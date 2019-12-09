@@ -1,0 +1,83 @@
+[
+{
+    "pk": 1,
+    "model": "slices.slice",
+    "fields": {
+        "set_state": "register",
+        "group": 1,
+        "name": "openwrt-slice-example",
+        "instance_sn": 3,
+        "allow_isolated": true,
+        "isolated_vlan_tag": null,
+        "expires_on": "2014-06-25",
+        "description": "openwrt-slice-example"
+    }
+},
+{
+    "pk": 2,
+    "model": "slices.slice",
+    "fields": {
+        "set_state": "register",
+        "group": 1,
+        "name": "debian-slice-example",
+        "instance_sn": 0,
+        "allow_isolated": false,
+        "isolated_vlan_tag": null,
+        "expires_on": "2015-06-14",
+        "description": "debian-slice-example"
+    }
+},
+{
+    "pk": 3,
+    "model": "slices.slice",
+    "fields": {
+        "set_state": "register",
+        "group": 1,
+        "name": "nodata-slice-example",
+        "instance_sn": 0,
+        "allow_isolated": false,
+        "isolated_vlan_tag": null,
+        "expires_on": "2015-06-14",
+        "description": "nodata-slice-example"
+    }
+},
+{
+    "pk": 1,
+    "model": "slices.sliverdefaults",
+    "fields": {
+        "slice": 1,
+        "instance_sn": 4,
+        "data": "confine-slice-openwrt-exp-data.tgz",
+        "data_uri": "",
+        "set_state": "start",
+        "data_sha256": "21ae296006185c7110b80632f3d8e69961b56dc6a859223ea6afe6c5e73c1def",
+        "template": 2
+    }
+},
+{
+    "pk": 2,
+    "model": "slices.sliverdefaults",
+    "fields": {
+        "slice": 2,
+        "instance_sn": 0,
+        "data": "confine-slice-debian-exp-data.tgz",
+        "data_uri": "",
+        "set_state": "start",
+        "data_sha256": "3c254719c4cb8e7aa13f690e638cd39f38d71ada2fb467b76ca776e6f2d73f15",
+        "template": 1
+    }
+},
+{
+    "pk": 3,
+    "model": "slices.sliverdefaults",
+    "fields": {
+        "slice": 3,
+        "instance_sn": 0,
+        "data": null,
+        "data_uri": null,
+        "set_state": "start",
+        "data_sha256": null,
+        "template": 1
+    }
+}
+]

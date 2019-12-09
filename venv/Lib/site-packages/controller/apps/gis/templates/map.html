@@ -1,0 +1,32 @@
+{% extends iframe|yesno:"iframe_layout.html,admin/index.html" %}
+
+{% load i18n admin_static staticfiles %}
+
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "gis/css/gis-map.css" %}" />{% endblock %}
+
+
+{% block content_title %}
+    <h1>{% block accounts_title %}GIS map{% endblock %}</h1>
+{% endblock %}
+
+{% block breadcrumbs %}{% endblock %}
+
+{% block content %}
+<div id="content-main">
+    <div id="map_canvas" style="width: 100%; height: 480px"></div>
+    <ul id="map_legend">
+        {% for state in states %}<li>
+        <img class="legend" alt="state" src="{% static "gis/openlayers/img/nodes/"|add:state|add:".png" %}" />{{ state }}
+        </li>{% endfor %}
+    </ul>
+</div>
+
+{# OpenLayers + AnimatedCluster: http://acuriousanimal.com/code/animatedCluster/ #}
+<script src="{% static "gis/openlayers/OpenLayers.js" %}"></script>
+<script src="{% static "gis/openlayers/AnimatedCluster.js" %}"></script>
+<script src="{% static "gis/js/gis-map.js" %}"></script>
+
+<script>
+var map = OsmMap({{ center.lat }}, {{ center.lng }}, {{ zoom }}, "{{ kml_url }}");
+</script>
+{% endblock %}

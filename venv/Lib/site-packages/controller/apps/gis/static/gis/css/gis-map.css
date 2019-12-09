@@ -1,0 +1,44 @@
+/** gis map styles **/
+#header {
+    height: 75px; /* Reserve space to nav bar */
+}
+
+#content-main {
+    position: relative;
+}
+
+#map_legend {
+    background-color: rgba(240, 240, 240, 0.8);
+    border-bottom-left-radius: 10px;
+    color: black;
+    padding: 5px 10px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 9990;
+}
+
+#map_legend li {
+    list-style: none;
+}
+
+#map_legend li img {
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+#featurePopup_contentDiv h2 a {
+    font-size: x-small;
+    vertical-align: top;
+}
+
+.description .label { margin-left: 0; }
+.label { font-weight: bold; margin-left: 10px; }
+
+/** state colored **/
+.offline, .crashed, .failure { color: red; }
+.nodata { color: purple; }
+.unknown { color: gray; }}
+.debug { color: orange; }
+.production { color: green; }
+.safe { color: blue; }

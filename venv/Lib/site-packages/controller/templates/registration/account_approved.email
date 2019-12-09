@@ -1,0 +1,12 @@
+{% load users_registration %}
+{% get_settings_value "SITE_NAME" as site_name %}
+
+{% if subject %}Your account has been enabled{% endif %}
+{% if message %}Dear user,
+Congratulations, the testbed operators have enabled your account.
+Now you can login to the testbed website with the user and password provided.
+http://{{ site.domain }}{% url 'admin:index' %}
+
+Have a nice day,
+{{ site_name }} management team.
+{% endif %}

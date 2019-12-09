@@ -1,0 +1,52 @@
+from django import forms
+from django.utils.safestring import mark_safe
+from django.utils.encoding import force_text
+
+# TODO combine both widgets
+
+class ShowText(forms.Widget):
+    def render(self, name, value, attrs):
+        value = force_text(value)
+        if value is None:
+            return ''
+        if hasattr(self, 'initial'):
+            value = self.initial
+        if self.bold: 
+            final_value = u'<b>%s</b>' % (value)
+        else:
+            final_value = '<br/>'.join(value.split('\n'))
+        if self.warning:
+            final_value = u'<ul class="messagelist"><li class="warning">%s</li></ul>' %(final_value)
+        if self.hidden:
+            final_value = u'%s<input type="hidden" name="%s" value="%s"/>' % (final_value, name, value)
+        return mark_safe(final_value)
+            
+    def __init__(self, *args, **kwargs):
+        for kwarg in ['bold', 'warning', 'hidden']:
+            setattr(self, kwarg, kwargs.pop(kwarg, False))
+        super(ShowText, self).__init__(*args, **kwargs)
+        
+    def _has_changed(self, initial, data):
+        return False
+
+
+class ReadOnlyWidget(forms.Widget):
+    def __init__(self, original_value, display_value):
+        self.original_value = original_value
+        self.display_value = display_value
+        super(ReadOnlyWidget, self).__init__()
+    
+    def render(self, name, value, attrs=None):
+        if self.display_value is not None:
+            return mark_safe(self.display_value)
+        return mark_safe(self.original_value)
+    
+    def value_from_datadict(self, data, files, name):
+        return self.original_value
+
+
+class ReadOnlyBooleanWidget(forms.Widget):
+    def render(self, name, value, attrs=None):
+        if value:
+            return mark_safe('<img src="/static/admin/img/icon-yes.gif" alt="True" />')
+        return mark_safe('<img src="/static/admin/img/icon-no.gif" alt="False" />')

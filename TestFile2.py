@@ -43,7 +43,6 @@ class AddressBook:
         self.email_var.set(self.lst_addresses[self.which_selected()].email)
         self.phone_var.set(self.lst_addresses[self.which_selected()].phone)
 
-    #populates listbox with all the names
     def set_listbox(self):
         self.lbx_names.delete(0, END)
         for dat in range(len(self.lst_addresses)):

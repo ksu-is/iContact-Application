@@ -1,0 +1,52 @@
+{% extends "admin/base_site.html" %}
+{% load i18n l10n staticfiles admin_urls %}
+
+{% block extrastyle %}
+{{ block.super }}
+<link rel="stylesheet" type="text/css" href="{% static "admin/css/forms.css" %}" />
+{% endblock %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+<a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+&rsaquo; <a href="{% url 'admin:app_list' app_label='slices' %}">Slices</a>
+&rsaquo; <a href="{% url 'admin:slices_slice_changelist' %}">Slices</a>
+&rsaquo; <a href="{% url 'admin:slices_slice_change' slice.pk %}">{{ slice }}</a>
+&rsaquo; 'Create slivers'
+</div>
+{% endblock %}
+
+
+{% block content %}
+    <p>Are you sure you want to create slivers for the slice <a href="{% url 'admin:slices_slice_change' slice.pk %}">{{ slice }}</a> on the following selected nodes?</p>
+    {% for deletable_object in deletable_objects %}
+        <ul>{{ deletable_object|unordered_list }}</ul>
+    {% endfor %}
+    <form action="" method="post">{% csrf_token %}
+    <div>
+    
+    <div style="margin:20px;">
+        <fieldset class="module aligned">
+            <h2>Request Network Interfaces</h2>
+            {% for field in form %}
+            <div class="form-row ">
+                <div >
+                {{ field.errors }}
+                {{ field }} <label for="{{ field.id_for_label }}" class="vCheckboxLabel">{{ field.label }}</label>
+                <p class="help">{{ field.help_text|safe }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </fieldset>
+        </div>
+    
+    {% for obj in queryset %}
+    <input type="hidden" name="{{ action_checkbox_name }}" value="{{ obj.pk|unlocalize }}" />
+    {% endfor %}
+    <input type="hidden" name="action" value="create_slivers" />
+    <input type="hidden" name="post" value="yes" />
+    <input type="submit" value="{% trans "Yes, create slivers" %}" />
+    </div>
+    </form>
+{% endblock %}
+
