@@ -1,75 +1,29 @@
-import tkinter as tk
+from tkinter import *
 
-import controller
+root = Tk()
+frame=Frame(root)
 
+Grid.rowconfigure(root, 0, weight=1)
+Grid.columnconfigure(root, 0, weight=1)
 
+frame.grid(row=0, column=0, sticky=N+S+E+W)
 
-class iContact(tk.Tk):
-    def __init__(self, *args, **kwargs):
-        tk.Tk.__init__(self, *args, **kwargs)
-        container = tk.Frame(self)
+grid=Frame(frame)
+grid.grid(sticky=N+S+E+W, column=0, row=7, columnspan=2)
 
-        container.pack(side="top", fill="both", expand=True)
+Grid.rowconfigure(frame, 7, weight=1)
+Grid.columnconfigure(frame, 0, weight=1)
 
-        container.grid_rowconfigure(0, weight=1)
+#example values
+for x in range(2):
+    for y in range(1):
+        btn = Button(frame)
+        btn.grid(column=x, row=y, sticky=N+S+E+W)
 
-        container.grid_columnconfigure(0, weight=1)
+for x in range(2):
+  Grid.columnconfigure(frame, x, weight=1)
 
-        self.frames = {}
+for y in range(1):
+  Grid.rowconfigure(frame, y, weight=1)
 
-        for F in (StartPage, PageOne, PageTwo):
-            frame = F(container, self)
-
-            self.frames[F] = frame
-
-            frame.grid(row=0, column=0, sticky="nsew")
-
-            self.show_frame(StartPage)
-
-    def show_frame(self, cont):
-        frame = self.frames[cont]
-        frame.tkraise()
-
-
-class StartPage(tk.Frame):
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-
-        label = tk.Label(self, )
-        label.pack()
-
-        button = tk.Button(self, text="Visit Page 1", command=lambda: controller.show_frame(PageOne))
-        button.pack()
-
-        button2 = tk.Button(self, text="Visit Page 2", command=lambda: controller.show_frame(PageTwo))
-        button2.pack()
-
-
-class PageOne(tk.Frame):
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        label = tk.Label(self, text="Page One!")
-        label.pack()
-
-        button1 = tk.Button(self, text="Back to Home", command=lambda: controller.show_frame(StartPage))
-        button1.pack()
-
-        button2 = tk.Button(self, text="Page Two", command=lambda: controller.show_frame(PageTwo))
-        button2.pack()
-
-
-class PageTwo(tk.Frame):
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        label = tk.Label(self, text="Page Two!")
-        label.pack()
-
-        button1 = tk.Button(self, text="Back to Home", command=lambda: controller.show_frame(StartPage))
-        button1.pack()
-
-        button2 = tk.Button(self, text="Page One", command=lambda: controller.show_frame(PageOne))
-        button2.pack()
-
-
-app = iContact()
-app.mainloop()
+root.mainloop()
